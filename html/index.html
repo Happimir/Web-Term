@@ -16,25 +16,57 @@
 </head>
 
 <body>
-
+    
     <div class = "jumbotron text-center" name = "banner" id = "banner">
+        <h3>MovieMob</h3>
         <form name = "search" id="search">
             <label>Search</label><input name="searchBox" type="text">
             <input type="submit" value="Search">
         </form>
     </div>
 
-    <div class = "container">
+    <div class = "container-fluid">
         <div class="row">
             <div class="col-md-8">
-               <h3>Column 1</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p> 
+                <div class="selector">
+                    <h3>Most Popular Movies</h3>
+                    <table class="table">
+                       <p>Showing 10 Tiles</p> 
+                        <tbody>
+                            <tr>
+                                <td>Sort By</td>
+                                <td><select name="sort">
+                                        <option value="Top Trending">Trending</option>
+                                        <div class="option1"></div>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Genre</td>
+                                <td><select name="Genre">
+                                        <option value="Top Trending">Trending</option>
+                                        <div class="option2"></div>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+               <p>
+                <img align = "left" src="http://cdn.history.com/sites/2/2015/05/hith-titanic-tombstone-E.jpeg" alt="placeholder"/>
+                   <div class="title"><span>Title</span></div>
+                   <div class="rating"><span>Rating</span></div>
+                </p>
             </div>
-            <div class="col-md-4">
-               <h3>Column 2</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p> 
+            <div class="col-md-4" id="inTheaters">
+               <h3>In Theaters</h3>
+                <div class="InTheaters">
+                    <p>
+                <img align = "left" src="http://cdn.history.com/sites/2/2015/05/hith-titanic-tombstone-E.jpeg" alt="placeholder"/>
+                   <div class="title"><span>Title</span></div>
+                   <div class="rating"><span>Rating</span></div>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
