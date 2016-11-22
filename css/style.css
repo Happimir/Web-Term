@@ -11,37 +11,23 @@ body {
     margin: 0 !important;
 }
 
-
-.inTheaters > img {
-    width: 30%;
-    height: 50%;
-}
-
-img {
-    width: 30%;
-    height: 30%;
-}
-
-p {
-    padding: 8px;
-}
-
-.cleared {
-    clear: both;
-}
-
 .MostPopularEntry {
 	width: 85%;
-	height: 250px;
-	border: 2px solid gray;
+	height: 325px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .imgDiv {
 	float: left;
-	width: 50%;
+	width: 40%;
+	height: 100%;
+	text-align: left;
 }
 
 .imgDiv img {
+	display: block;
 	width: auto;
 	height: auto;
 	max-width: 100%;
@@ -51,5 +37,11 @@ p {
 .infoDiv {
 	float: right;
 	padding: 10px;
-	width: 50%;
+	width: 60%;
+}
+
+.inTheatersEntry {
+	width: 95%;
+	display: block;
+	height: 200px;
 }
