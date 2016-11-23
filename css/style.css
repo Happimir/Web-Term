@@ -15,8 +15,7 @@ body {
 	width: 85%;
 	height: 325px;
 	display: block;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 20px auto;
 }
 
 .imgDiv {
@@ -44,4 +43,5 @@ body {
 	width: 95%;
 	display: block;
 	height: 200px;
+	margin: 12px 0px;
 }
