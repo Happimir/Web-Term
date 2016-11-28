@@ -1,4 +1,4 @@
-function createMPEntry() {
+function createMPEntry(e) {
     /*---------------------------------CONTAINER PARENT---------------------------------------------*/
 
     var MPArea = document.getElementsByClassName("col-md-8")[0];   // gets reference to parent div of all Most Popular Entries
@@ -17,27 +17,30 @@ function createMPEntry() {
     var innerDiv = document.createElement("div");
 
     // give inner img div a class value
-    attr = document.createAttribute("class");
-    attr.value = "imgDiv";
-    innerDiv.setAttributeNode(attr);
+    innerDiv.setAttribute("class","imgDiv");
+
+    // adds onclick event to redirect to info page
+    var qTitle = encodeURIComponent(e.Title); // changes title from plain text to url friendly
+    innerDiv.setAttribute("onclick","location.href='infoPage.html?title=" + qTitle + "'");
+
+    // adds finished inner div to parent container
+    container.appendChild(innerDiv);
 
     // set up img element and attributes
     var img = document.createElement("img");
     img.setAttribute("class", "img-responsive center-block");
-    img.src = "http://graphicdesignjunction.com/wp-content/uploads/2011/12/grey-movie-poster.jpg";
+    img.src = e.Poster;
 
     innerDiv.appendChild(img);  // adds img to inner img div
 
-    container.appendChild(innerDiv);    // adds finished inner div to parent container
+
 
     /*---------------------------------INNER INFO DIV---------------------------------------------*/
     // creates inner info div
     innerDiv = document.createElement("div");
 
     // add class value
-    attr = document.createAttribute("class");
-    attr.value = "infoDiv";
-    innerDiv.setAttributeNode(attr);
+    innerDiv.setAttribute("class","infoDiv");
 
     container.appendChild(innerDiv);
 
@@ -50,7 +53,7 @@ function createMPEntry() {
     dlNode.appendChild(dEntry);
 
     dEntry = document.createElement("dd");
-    dEntry.appendChild(document.createTextNode("The Grey"));
+    dEntry.appendChild(document.createTextNode(e.Title));
     dlNode.appendChild(dEntry);
 
     dEntry = document.createElement("dt");
@@ -58,7 +61,7 @@ function createMPEntry() {
     dlNode.appendChild(dEntry);
 
     dEntry = document.createElement("dd");
-    dEntry.appendChild(document.createTextNode("85%"));
+    dEntry.appendChild(document.createTextNode(e.Rated));
     dlNode.appendChild(dEntry);
 
     dEntry = document.createElement("dt");
@@ -66,21 +69,19 @@ function createMPEntry() {
     dlNode.appendChild(dEntry);
 
     dEntry = document.createElement("dd");
-    dEntry.appendChild(document.createTextNode("Dang Nature, you scary! Watch Liam Neeson punch forest critter for way too long."));
+    dEntry.appendChild(document.createTextNode(e.Plot));
     dlNode.appendChild(dEntry);
 }
 
 
 
-function createITEntry() {
+function createITEntry(title) {
     /*---------------------------------CONTAINER PARENT---------------------------------------------*/
     var ITArea = document.getElementsByClassName("col-md-4")[0];
 
     var container = document.createElement("div");
 
-    var attr = document.createAttribute("class");
-    attr.value = "inTheatersEntry";
-    container.setAttributeNode(attr);
+    container.setAttribute("class","inTheatersEntry");
 
     ITArea.appendChild(container);
 
@@ -88,9 +89,7 @@ function createITEntry() {
 
     var innerDiv = document.createElement("div");
 
-    attr = document.createAttribute("class");
-    attr.value = "imgDiv";
-    innerDiv.setAttributeNode(attr);
+    innerDiv.setAttribute("class","imgDiv");
 
     container.appendChild(innerDiv);
 
@@ -105,9 +104,7 @@ function createITEntry() {
 
     innerDiv = document.createElement("div");
 
-    attr = document.createAttribute("class");
-    attr.value = "infoDiv";
-    innerDiv.setAttributeNode(attr);
+    innerDiv.setAttribute("class","infoDiv");
 
     container.appendChild(innerDiv);
 
@@ -119,7 +116,7 @@ function createITEntry() {
     dlNode.appendChild(dEntry);
 
     dEntry = document.createElement("dd");
-    dEntry.appendChild(document.createTextNode("Aging Super Spy Royale of Solace Fall"));
+    dEntry.appendChild(document.createTextNode(title));
     dlNode.appendChild(dEntry);
 
     dEntry = document.createElement("dt");
@@ -132,6 +129,13 @@ function createITEntry() {
 }
 
 $(document).ready(function(){
-    createMPEntry();
-    createITEntry();
+    $.ajax({
+        url: "http://www.omdbapi.com/?t=The+Grey&y=&plot=short&r=json",
+        crossDomain: true,
+        dataType: "json",
+        success: createMPEntry
+    });
+
+    //createMPEntry("The Grey");
+    createITEntry("007: Skyfall");
 });
