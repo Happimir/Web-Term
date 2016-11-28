@@ -22,26 +22,37 @@ body {
 	float: left;
 	width: 40%;
 	height: 100%;
-	text-align: left;
+
 }
 
-.imgDiv img {
-	display: block;
-	width: auto;
-	height: auto;
-	max-width: 100%;
+img {
+	width:auto;
 	max-height: 100%;
 }
 
 .infoDiv {
 	float: right;
-	padding: 10px;
+	padding-left: 10px;
 	width: 60%;
+	height: 100%;
 }
 
 .inTheatersEntry {
 	width: 95%;
-	display: block;
 	height: 200px;
-	margin: 12px 0px;
+	margin: 12px 0;
+}
+
+.analysisPane{
+	margin: 25px auto;
+	height: 100%;
+	width: 100%;
+}
+
+.moviePoster img{
+	max-height: 450px;
+}
+
+dt{
+	margin-top: 8px;
 }

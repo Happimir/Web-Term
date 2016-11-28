@@ -23,8 +23,8 @@ function createMPEntry() {
 
     // set up img element and attributes
     var img = document.createElement("img");
+    img.setAttribute("class", "img-responsive center-block");
     img.src = "http://graphicdesignjunction.com/wp-content/uploads/2011/12/grey-movie-poster.jpg";
-    img.alt = "placeholder";
 
     innerDiv.appendChild(img);  // adds img to inner img div
 
@@ -51,8 +51,6 @@ function createMPEntry() {
 
     dEntry = document.createElement("dd");
     dEntry.appendChild(document.createTextNode("The Grey"));
-    dEntry.appendChild(document.createElement("br"));
-    dEntry.appendChild(document.createElement("br"));
     dlNode.appendChild(dEntry);
 
     dEntry = document.createElement("dt");
@@ -61,8 +59,6 @@ function createMPEntry() {
 
     dEntry = document.createElement("dd");
     dEntry.appendChild(document.createTextNode("85%"));
-    dEntry.appendChild(document.createElement("br"));
-    dEntry.appendChild(document.createElement("br"));
     dlNode.appendChild(dEntry);
 
     dEntry = document.createElement("dt");
@@ -100,6 +96,7 @@ function createITEntry() {
 
     var img = document.createElement("img");
     img.src = "http://www.printmag.com/wp-content/uploads/skyfall_xlg.jpg?55bde1";
+    img.setAttribute("class", "img-responsive center-block");
     img.alt = "placeholder";
 
     innerDiv.appendChild(img);  // adds img to inner img div
