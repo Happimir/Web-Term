@@ -1,4 +1,4 @@
-function createMPEntry(e) {
+function createMainEntry(e) {
     /*---------------------------------CONTAINER PARENT---------------------------------------------*/
 
     var MPArea = document.getElementsByClassName("col-md-8")[0];   // gets reference to parent div of all Most Popular Entries
@@ -6,7 +6,7 @@ function createMPEntry(e) {
 
     // create class attribute and add it to container div
     var attr = document.createAttribute("class");
-    attr.value = "MostPopularEntry";
+    attr.value = "MainEntry";
     container.setAttributeNode(attr);
 
     // add div to page
@@ -65,7 +65,7 @@ function createMPEntry(e) {
     dlNode.appendChild(dEntry);
 
     dEntry = document.createElement("dt");
-    dEntry.appendChild(document.createTextNode("Comments:"));
+    dEntry.appendChild(document.createTextNode("Synopsis:"));
     dlNode.appendChild(dEntry);
 
     dEntry = document.createElement("dd");
@@ -75,13 +75,13 @@ function createMPEntry(e) {
 
 
 
-function createITEntry(title) {
+function createSideEntry(e) {
     /*---------------------------------CONTAINER PARENT---------------------------------------------*/
     var ITArea = document.getElementsByClassName("col-md-4")[0];
 
     var container = document.createElement("div");
 
-    container.setAttribute("class","inTheatersEntry");
+    container.setAttribute("class","SideEntry");
 
     ITArea.appendChild(container);
 
@@ -91,12 +91,15 @@ function createITEntry(title) {
 
     innerDiv.setAttribute("class","imgDiv");
 
+    // adds onclick event to redirect to info page
+    var qTitle = encodeURIComponent(e.Title); // changes title from plain text to url friendly
+    innerDiv.setAttribute("onclick","location.href='infoPage.html?title=" + qTitle + "'");
+
     container.appendChild(innerDiv);
 
     var img = document.createElement("img");
-    img.src = "http://www.printmag.com/wp-content/uploads/skyfall_xlg.jpg?55bde1";
+    img.src = e.Poster;
     img.setAttribute("class", "img-responsive center-block");
-    img.alt = "placeholder";
 
     innerDiv.appendChild(img);  // adds img to inner img div
 
@@ -116,7 +119,7 @@ function createITEntry(title) {
     dlNode.appendChild(dEntry);
 
     dEntry = document.createElement("dd");
-    dEntry.appendChild(document.createTextNode(title));
+    dEntry.appendChild(document.createTextNode(e.Title));
     dlNode.appendChild(dEntry);
 
     dEntry = document.createElement("dt");
@@ -124,18 +127,61 @@ function createITEntry(title) {
     dlNode.appendChild(dEntry);
 
     dEntry = document.createElement("dd");
-    dEntry.appendChild(document.createTextNode("This is James Bond and he is here to make you think about death and get sad and stuff!"));
+    dEntry.appendChild(document.createTextNode(e.Plot));
     dlNode.appendChild(dEntry);
 }
 
+function prepareMain(e){
+    for(var i = 0; i < 20; i++){
+        var qTitle = encodeURIComponent(e.results[i].title);
+        $.ajax({
+            url: "http://www.omdbapi.com/?t=" + qTitle + "&y=&plot=short&r=json",
+            crossDomain: true,
+            dataType: "json",
+            success: createMainEntry
+        });
+    }
+}
+
+function prepareSide(e){
+    for(var i = 0; i < 10; i++){
+        var qTitle = encodeURIComponent(e.results[i].title);
+        $.ajax({
+            url: "http://www.omdbapi.com/?t=" + qTitle + "&y=&plot=short&r=json",
+            crossDomain: true,
+            dataType: "json",
+            success: createSideEntry
+        });
+    }
+}
+
 $(document).ready(function(){
-    $.ajax({
+    /*$.ajax({
         url: "http://www.omdbapi.com/?t=The+Grey&y=&plot=short&r=json",
         crossDomain: true,
         dataType: "json",
         success: createMPEntry
     });
 
-    //createMPEntry("The Grey");
-    createITEntry("007: Skyfall");
+    $.ajax({
+        url: "http://www.omdbapi.com/?t=Skyfall&y=&plot=short&r=json",
+        crossDomain: true,
+        dataType: "json",
+        success: createITEntry
+    });*/
+
+    $.ajax({
+        url: "https://api.themoviedb.org/3/movie/now_playing?api_key=027d8b752a92c86cb355d5a2965a7208&page=1",
+        crossDomain: true,
+        dataType: "json",
+        success: prepareMain
+    });
+
+    $.ajax({
+        url: "https://api.themoviedb.org/3/movie/upcoming?api_key=027d8b752a92c86cb355d5a2965a7208&language=en-US&page=1",
+        crossDomain: true,
+        dataType: "json",
+        success: prepareSide
+    });
+
 });

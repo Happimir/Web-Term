@@ -11,7 +11,7 @@ body {
     margin: 0 !important;
 }
 
-.MostPopularEntry {
+.MainEntry {
 	width: 85%;
 	height: 325px;
 	display: block;
@@ -37,10 +37,11 @@ img {
 	height: 100%;
 }
 
-.inTheatersEntry {
+.SideEntry {
 	width: 95%;
 	height: 200px;
 	margin: 12px 0;
+	overflow: hidden;
 }
 
 .analysisPane{

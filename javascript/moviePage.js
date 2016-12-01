@@ -36,7 +36,7 @@ $(document).ready(function(){
     // get the movie title and prepare it to be used in query
     var qTitle = encodeURIComponent(GET["title"]);
     // final url to be used in query
-    var queryUrl = "http://www.omdbapi.com/?t=" + qTitle + "&y=&plot=full&r=json";
+    var queryUrl = "http://www.omdbapi.com/?t=" + qTitle + "&y=&plot=short&r=json";
 
     // queries the OMDb api and calls the fillPage function on success
     $.ajax({
